@@ -120,8 +120,29 @@ def Thermal_expansion_for_honeycomb(number_of_model, l_cell_side_size, h_cell_si
 #     2.9945407835581253,
 #     2.769465602708258
 # ]
-# assert Thermal_expansion_for_unidirectional_composite(1, 0.2, 100.0, 0.3, 1e-6, 5.0, 0.2, 20e-5))
-# print(Thermal_conductivity_for_unidirectional_composite(2, 0.2, 100, 1))
-# 
-# print(Elastic_modules_for_honeycomb(1,9.24 ,8.4619, 0.4, math.pi/6 , 7.07, 0.2))
-# print(Thermal_expansion_for_honeycomb(1, 9.24 ,8.4619, 0.4, math.pi/6 , 20e-5))
+# assert Thermal_expansion_for_unidirectional_composite(1, 0.2, 100.0, 0.3, 1e-6, 5.0, 0.2, 20e-5) == [
+#     0.00003303092919697953,
+#     0.0001653038466333737,
+#     0.0001653038466333737
+# ]
+# assert Thermal_conductivity_for_unidirectional_composite(2, 0.2, 100, 1) == [
+#     20.8,
+#     1.3300670235932428,
+#     1.3300670235932428
+# ]
+# assert Elastic_modules_for_honeycomb(1,9.24 ,8.4619, 0.4, math.pi/6 , 7.07, 0.2) == [
+#     0.0014972693834675922,
+#     0.0013344741623586129,
+#     0.3592394105863781,
+#     1.0512175946777975,
+#     0.0008335774635770805,
+#     0.0007429441887683659,
+#     0.00028697519513263696,
+#     0.07995563727728495,
+#     0.0755763830773748
+# ]
+# assert Thermal_expansion_for_honeycomb(1, 9.24 ,8.4619, 0.4, math.pi/6 , 20e-5) == [
+#     0.0002,
+#     0.00019999999999999966,
+#     0.0002
+# ]
