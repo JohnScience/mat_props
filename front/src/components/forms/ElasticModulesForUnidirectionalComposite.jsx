@@ -3,6 +3,7 @@ import React from "react";
 // TODO: add units (GPa, MPa, etc.)
 // TODO: offer suggested values for E and v
 export const ElasticModulesForUnidirectionalComposite = () => {
+    // FIXME: change the variable name to more English-like
     const [numberOfModel, setNumberOfModel] = React.useState(1);
     const [fiberContent, setFiberContent] = React.useState(0.2);
     const [eForFiber, setEForFiber] = React.useState(100.0);
@@ -37,11 +38,11 @@ export const ElasticModulesForUnidirectionalComposite = () => {
 
     async function compute() {
         if (!window.__TAURI__) {
-            console.error("Tauri API not available in browser");
+            console.error("Tauri API is not available in browser");
             return;
         }
         let response = await window.__TAURI__.invoke("elastic_modules_for_unidirectional_composite", {
-            numberOfModel: numberOfModel,
+            numberOfModel: parseInt(numberOfModel),
             fiberContent: fiberContent,
             eForFiber: eForFiber,
             nuForFiber: nuForFiber,
@@ -83,7 +84,7 @@ export const ElasticModulesForUnidirectionalComposite = () => {
             <br />
             <input type="button" value="Рассчитать" onClick={compute} />
 
-            { computedValues.length > 0 ?
+            { computedValues.length > 0 &&
                 <>
                     <h2>Значения:</h2>
                     <p>E1 = {computedValues[0][0].toFixed(10)}</p>
@@ -96,8 +97,8 @@ export const ElasticModulesForUnidirectionalComposite = () => {
                     <p>G13 = {computedValues[0][7].toFixed(10)}</p>
                     <p>G23 = {numberOfModel==1 ? "Не вычислимо в рамках модели" : computedValues[0][8].toFixed(10)}</p>
                     <p>Вычислено за {computedValues[1].secs}с {Math.floor(computedValues[1].nanos / 1e6)}мс {Math.floor((computedValues[1].nanos % 1e6) / 1e3)}мкс {computedValues[1].nanos % 1e3}нс</p>
-                </> 
-                    : null }
+                </>
+            }
 
         </form>
     </>
