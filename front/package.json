@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "build-for-app": "mkdir \"../app/www\" || vite build --outDir ../app/www --emptyOutDir",
+    "tauri": "npm run build-for-app && cd ../app && cargo tauri dev",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

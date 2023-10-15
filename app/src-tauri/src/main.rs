@@ -50,12 +50,12 @@ fn see_funcs(app: tauri::AppHandle) -> (Vec<String>, std::time::Duration) {
     (members, diff)
 }
 
-// await window.__TAURI__.invoke("elastic_modules_for_unidirectional_composite", { numberOfModel: 2, fibreContent: 0.2, eForFiber: 100.0, nuForFiber: 0.3, eForMatrix: 5.0, nuForMatrix: 0.2 });
+// await window.__TAURI__.invoke("elastic_modules_for_unidirectional_composite", { numberOfModel: 2, fiberContent: 0.2, eForFiber: 100.0, nuForFiber: 0.3, eForMatrix: 5.0, nuForMatrix: 0.2 });
 #[tauri::command]
 fn elastic_modules_for_unidirectional_composite(
     app: tauri::AppHandle,
     number_of_model: u64,
-    fibre_content: f64,
+    fiber_content: f64,
     e_for_fiber: f64,
     nu_for_fiber: f64,
     e_for_matrix: f64,
@@ -86,7 +86,7 @@ fn elastic_modules_for_unidirectional_composite(
         out = elastic_modules_for_unidirectional_composite
             .call1((
                 number_of_model,
-                fibre_content,
+                fiber_content,
                 e_for_fiber,
                 nu_for_fiber,
                 e_for_matrix,
@@ -104,12 +104,12 @@ fn elastic_modules_for_unidirectional_composite(
     (out, diff)
 }
 
-// await window.__TAURI__.invoke("thermal_expansion_for_unidirectional_composite", { numberOfModel: 1, fibreContent: 0.2, eForFiber: 100.0, nuForFiber: 0.3, alphaForFiber: 1e-6, eForMatrix: 5.0, nuForMatrix: 0.2, alphaForMatrix: 20e-5 })
+// await window.__TAURI__.invoke("thermal_expansion_for_unidirectional_composite", { numberOfModel: 1, fiberContent: 0.2, eForFiber: 100.0, nuForFiber: 0.3, alphaForFiber: 1e-6, eForMatrix: 5.0, nuForMatrix: 0.2, alphaForMatrix: 20e-5 })
 #[tauri::command]
 fn thermal_expansion_for_unidirectional_composite(
     app: tauri::AppHandle,
     number_of_model: u64,
-    fibre_content: f64,
+    fiber_content: f64,
     e_for_fiber: f64,
     nu_for_fiber: f64,
     alpha_for_fiber: f64,
@@ -142,7 +142,7 @@ fn thermal_expansion_for_unidirectional_composite(
         out = elastic_modules_for_unidirectional_composite
             .call1((
                 number_of_model,
-                fibre_content,
+                fiber_content,
                 e_for_fiber,
                 nu_for_fiber,
                 alpha_for_fiber,
@@ -162,12 +162,12 @@ fn thermal_expansion_for_unidirectional_composite(
     (out, diff)
 }
 
-// await window.__TAURI__.invoke("thermal_conductivity_for_unidirectional_composite", { numberOfModel: 2, fibreContent: 0.2, kForFiber: 100.0, kForMatrix: 1 })
+// await window.__TAURI__.invoke("thermal_conductivity_for_unidirectional_composite", { numberOfModel: 2, fiberContent: 0.2, kForFiber: 100.0, kForMatrix: 1 })
 #[tauri::command]
 fn thermal_conductivity_for_unidirectional_composite(
     app: tauri::AppHandle,
     number_of_model: u64,
-    fibre_content: f64,
+    fiber_content: f64,
     k_for_fiber: f64,
     k_for_matrix: f64,
 ) -> ([f64; 3], std::time::Duration) {
@@ -194,7 +194,7 @@ fn thermal_conductivity_for_unidirectional_composite(
             .unwrap();
 
         out = elastic_modules_for_unidirectional_composite
-            .call1((number_of_model, fibre_content, k_for_fiber, k_for_matrix))
+            .call1((number_of_model, fiber_content, k_for_fiber, k_for_matrix))
             .unwrap()
             .extract::<[f64; 3]>()
             .unwrap();

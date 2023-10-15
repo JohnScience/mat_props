@@ -18,7 +18,7 @@ export const Form = () => {
                 <h1>Свойства материалов</h1>
             </div>
             <div>
-                <label htmlFor="name">
+                <label>
                     Функция <br />
                 <select value={fn} onChange={handleChange}>
                     <option value="elastic_modules_for_unidirectional_composite">elastic_modules_for_unidirectional_composite</option>
@@ -40,10 +40,8 @@ export const Form = () => {
                         <ElasticModulesForHoneycomb /> :
                     fn == "thermal_expansion_for_honeycomb" ?
                         <ThermalExpansionForHoneycomb /> :
-                        <><p>{fn}</p></>
+                        null
                 }
-
-                <p>Мы используем {fn}</p>
             </div>
         </>
     )
