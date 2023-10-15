@@ -33,7 +33,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.x.comp.mat-props",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
