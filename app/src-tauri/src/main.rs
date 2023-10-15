@@ -8,7 +8,6 @@ use pyo3::types::PyTuple;
 #[tauri::command]
 fn see_funcs(app: tauri::AppHandle) -> (Vec<String>, std::time::Duration) {
     use pyo3::prelude::*;
-    use pyo3::types::PyFunction;
 
     let before = std::time::Instant::now();
     let mat_props = app
@@ -24,7 +23,7 @@ fn see_funcs(app: tauri::AppHandle) -> (Vec<String>, std::time::Duration) {
         // https://docs.python.org/3/library/inspect.html
         let inspect = PyModule::import(py, "inspect").unwrap();
         // from inspect import getmembers
-        let get_members: &PyFunction = inspect.getattr("getmembers").unwrap().downcast().unwrap();
+        let get_members = inspect.getattr("getmembers").unwrap();
         // from inspect import isfunction
         let is_function = inspect.getattr("isfunction").unwrap();
 
@@ -62,7 +61,6 @@ fn elastic_modules_for_unidirectional_composite(
     nu_for_matrix: f64,
 ) -> ([f64; 9], std::time::Duration) {
     use pyo3::prelude::*;
-    use pyo3::types::PyFunction;
 
     let before = std::time::Instant::now();
     let mat_props = app
@@ -77,10 +75,8 @@ fn elastic_modules_for_unidirectional_composite(
     Python::with_gil(|py| -> PyResult<()> {
         let mat_props = PyModule::from_code(py, &code, "mat_props.py", "mat_props").unwrap();
 
-        let elastic_modules_for_unidirectional_composite: &PyFunction = mat_props
+        let elastic_modules_for_unidirectional_composite = mat_props
             .getattr("Elastic_modules_for_unidirectional_composite")
-            .unwrap()
-            .downcast()
             .unwrap();
 
         out = elastic_modules_for_unidirectional_composite
@@ -118,7 +114,6 @@ fn thermal_expansion_for_unidirectional_composite(
     alpha_for_matrix: f64,
 ) -> ([f64; 3], std::time::Duration) {
     use pyo3::prelude::*;
-    use pyo3::types::PyFunction;
 
     let before = std::time::Instant::now();
     let mat_props = app
@@ -133,10 +128,8 @@ fn thermal_expansion_for_unidirectional_composite(
     Python::with_gil(|py| -> PyResult<()> {
         let mat_props = PyModule::from_code(py, &code, "mat_props.py", "mat_props").unwrap();
 
-        let elastic_modules_for_unidirectional_composite: &PyFunction = mat_props
+        let elastic_modules_for_unidirectional_composite = mat_props
             .getattr("Thermal_expansion_for_unidirectional_composite")
-            .unwrap()
-            .downcast()
             .unwrap();
 
         out = elastic_modules_for_unidirectional_composite
@@ -172,7 +165,6 @@ fn thermal_conductivity_for_unidirectional_composite(
     k_for_matrix: f64,
 ) -> ([f64; 3], std::time::Duration) {
     use pyo3::prelude::*;
-    use pyo3::types::PyFunction;
 
     let before = std::time::Instant::now();
     let mat_props = app
@@ -187,10 +179,8 @@ fn thermal_conductivity_for_unidirectional_composite(
     Python::with_gil(|py| -> PyResult<()> {
         let mat_props = PyModule::from_code(py, &code, "mat_props.py", "mat_props").unwrap();
 
-        let elastic_modules_for_unidirectional_composite: &PyFunction = mat_props
+        let elastic_modules_for_unidirectional_composite = mat_props
             .getattr("Thermal_conductivity_for_unidirectional_composite")
-            .unwrap()
-            .downcast()
             .unwrap();
 
         out = elastic_modules_for_unidirectional_composite
@@ -220,7 +210,6 @@ fn elastic_modules_for_honeycomb(
     nu_for_honeycomb: f64,
 ) -> ([f64; 9], std::time::Duration) {
     use pyo3::prelude::*;
-    use pyo3::types::PyFunction;
 
     let before = std::time::Instant::now();
     let mat_props = app
@@ -235,11 +224,8 @@ fn elastic_modules_for_honeycomb(
     Python::with_gil(|py| -> PyResult<()> {
         let mat_props = PyModule::from_code(py, &code, "mat_props.py", "mat_props").unwrap();
 
-        let elastic_modules_for_honeycomb: &PyFunction = mat_props
-            .getattr("Elastic_modules_for_honeycomb")
-            .unwrap()
-            .downcast()
-            .unwrap();
+        let elastic_modules_for_honeycomb =
+            mat_props.getattr("Elastic_modules_for_honeycomb").unwrap();
 
         out = elastic_modules_for_honeycomb
             .call1((
@@ -275,7 +261,6 @@ fn thermal_expansion_for_honeycomb(
     alpha_for_honeycomb: f64,
 ) -> ([f64; 3], std::time::Duration) {
     use pyo3::prelude::*;
-    use pyo3::types::PyFunction;
 
     let before = std::time::Instant::now();
     let mat_props = app
@@ -290,10 +275,8 @@ fn thermal_expansion_for_honeycomb(
     Python::with_gil(|py| -> PyResult<()> {
         let mat_props = PyModule::from_code(py, &code, "mat_props.py", "mat_props").unwrap();
 
-        let elastic_modules_for_honeycomb: &PyFunction = mat_props
+        let elastic_modules_for_honeycomb = mat_props
             .getattr("Thermal_expansion_for_honeycomb")
-            .unwrap()
-            .downcast()
             .unwrap();
 
         out = elastic_modules_for_honeycomb

@@ -16,7 +16,7 @@ tauri-build = { version = "1.2", features = [] }
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.2", features = ["shell-open"] }
-pyo3 = { version = "0.20" }
+pyo3 = { version = "0.20", features = ["abi3"] }
 dunce = "1"
 
 [features]
