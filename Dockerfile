@@ -2,7 +2,7 @@ FROM rust:latest as builder
 
 RUN apt update && \
     apt install -y \
-    python3 \
+    libpython3-dev \
     libwebkit2gtk-4.0-dev \
     build-essential \
     curl \
@@ -15,8 +15,6 @@ RUN apt update && \
     npm && \
     cargo install tauri-cli
 
-RUN apt install -y \
-    libpython3.11-dev
 
 # Устанавливаем директорию для работы с приложением
 WORKDIR /usr/mat-props/app/src-tauri
