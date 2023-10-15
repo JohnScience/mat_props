@@ -320,6 +320,7 @@ fn thermal_expansion_for_honeycomb(
 fn main() {
     tauri::Builder::default()
         .setup(|_app| {
+            // we can install Python before the application starts
             pyo3::prepare_freethreaded_python();
             Ok(())
         })
