@@ -1,16 +1,18 @@
 import React from "react";
+import { Benchmark } from "../Benchmark";
 
 // TODO: add units (GPa, MPa, etc.)
 // TODO: offer suggested values for E and v
 export const ElasticModulesForUnidirectionalComposite = () => {
     // FIXME: change the variable name to more English-like
+    // FIXME: change the indexation to 0-based
     const [numberOfModel, setNumberOfModel] = React.useState(1);
     const [fiberContent, setFiberContent] = React.useState(0.2);
     const [eForFiber, setEForFiber] = React.useState(100.0);
     const [nuForFiber, setNuForFiber] = React.useState(0.3);
     const [eForMatrix, setEForMatrix] = React.useState(5.0);
     const [nuForMatrix, setNuForMatrix] = React.useState(0.2);
-    const [computedValues, setComputedValues] = React.useState(([],0));
+    const [computedValues, setComputedValues] = React.useState(([],{secs: 0, nanos: 0}));
 
     function handleNumberOfModelChange(event) {
         setNumberOfModel(event.target.value);
@@ -96,7 +98,7 @@ export const ElasticModulesForUnidirectionalComposite = () => {
                     <p>G12 = {computedValues[0][6].toFixed(10)}</p>
                     <p>G13 = {computedValues[0][7].toFixed(10)}</p>
                     <p>G23 = {numberOfModel==1 ? "Не вычислимо в рамках модели" : computedValues[0][8].toFixed(10)}</p>
-                    <p>Вычислено за {computedValues[1].secs}с {Math.floor(computedValues[1].nanos / 1e6)}мс {Math.floor((computedValues[1].nanos % 1e6) / 1e3)}мкс {computedValues[1].nanos % 1e3}нс</p>
+                    <Benchmark t={computedValues[1]} />
                 </>
             }
 
